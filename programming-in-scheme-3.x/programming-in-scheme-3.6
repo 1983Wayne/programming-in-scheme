@@ -1,0 +1,6 @@
+;;; Create a triangle-area procedure that will give the area of a triangle that has two sides and an included angle with them.
+
+(define (triangle-area-2 side-length-A side-length-B angle-in-radians)
+  (if (or (< side-length-A 0) (< side-length-B 0))
+      (display "You're a psycho.")
+      (* (/ (* side-length-A side-length-B) 2) (sin angle-in-radians))))
