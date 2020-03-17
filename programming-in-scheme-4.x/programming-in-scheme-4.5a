@@ -1,0 +1,19 @@
+;;; Make modifications to the roulette-wheel procedure from earlier chapters.
+
+(define (roulette-wheel first-number second-number)
+  (cond ((or (< first-number 0) (< second-number 0)) (display "Come back with a bet greater than a negative number next time!"))
+        ((or (> first-number 36) (> second-number 36)) (display "Whoa partner, you need a bet lower than 36 in BOTH of these slots!"))
+        (else (compare-with-bet (random 37) first-number second-number))))
+
+(define (compare-with-bet actual-number first-number second-number)
+  (display "The result of the spin is ")
+  (display actual-number)
+  (display ", while your first selected number is ")
+  (display first-number)
+  (display " and your second guess is ")
+  (display second-number)
+  (display ".")
+  (newline)
+      (cond ((< first-number actual-number) (display "You won on your very first number! "))
+            ((< second-number actual-number) (display "You won the bet because of your second number! "))
+            (else (display "You LOSE, LOSE, LOSE!!!! "))))
