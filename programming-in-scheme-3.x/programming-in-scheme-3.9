@@ -1,0 +1,21 @@
+;;;  Create the baseball-statistics procedure.
+
+(define (baseball-statistics at-bats singles doubles triples home-runs walks sac-flies)
+  (newline)
+  (display "Batting average: ")
+  (display (batting-avg at-bats singles doubles triples home-runs))
+  (newline)
+  (display "Slugging percentage: ")
+  (display (slugging-pct at-bats singles doubles triples home-runs))
+  (newline)
+  (display "On-base percentage: ")
+  (display (on-base-pct at-bats singles doubles triples home-runs walks sac-flies)))
+
+(define (batting-avg at-bats singles doubles triples home-runs)
+  (/ (+ singles doubles triples home-runs) at-bats))
+
+(define (slugging-pct at-bats singles doubles triples home-runs)
+  (/ (+ singles (* doubles 2) (* triples 3) (* home-runs 4)) at-bats))
+
+(define (on-base-pct at-bats singles doubles triples home-runs walks sac-flies)
+  (/ (+ singles doubles triples home-runs) (+ at-bats walks sac-flies)))
