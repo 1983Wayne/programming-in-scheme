@@ -1,0 +1,4 @@
+;;; Create the pendulum-period procedure with only length as an argument.
+
+(define (pendulum-period length)
+  (* 2 3.14159 (sqrt (/ length 9.8))))
