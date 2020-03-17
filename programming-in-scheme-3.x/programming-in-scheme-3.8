@@ -1,0 +1,6 @@
+;;; Create a procedure called shell-volume that calculates the differnece in volume of a big sphere and a little one.
+
+(define (volume-sphere radius) (* (/ 4 3) (expt radius 3) 3.14159))
+
+(define (shell-volume small-radius big-radius)
+  (- (volume-sphere big-radius) (volume-sphere small-radius)))
