@@ -1,0 +1,18 @@
+;;; Make more modifications to the roulette game from earlier chapters so that there's a low and high limit to bet between.
+
+(define (roulette-wheel-crunch first-number second-number)
+  (cond ((or (< first-number 0) (< second-number 0)) (display "Come back with a bet greater than a negative number next time!"))
+        ((or (> first-number 36) (> second-number 36)) (display "Whoa partner, you need a bet lower than 36 in BOTH of these slots!"))
+        (else (compare-with-bet-max (random 37) first-number second-number))))
+        
+(define (compare-with-bet-max actual-number first-number second-number)
+  (display "The result of the spin is ")
+  (display actual-number)
+  (display ", where your low limit is ")
+  (display first-number)
+  (display " and your high limit is ")
+  (display second-number)
+  (display ".")
+  (newline)
+      (cond ((and (> actual-number first-number) (< actual-number second-number)) (display "You win, you lucky gambler you!"))
+            (else (display "You LOSE, LOSE, LOSE!!!! "))))
