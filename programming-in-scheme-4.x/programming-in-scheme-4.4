@@ -1,0 +1,6 @@
+;;; Create the 'close enough' predicate between two argument numbers and a limit of how close the numbers need to be to each other.
+
+(define (close? number1 number2 limit)
+  (if (> number1 number2)
+      (<= (- number1 number2) limit)
+      (<= (- number2 number1) limit)))
