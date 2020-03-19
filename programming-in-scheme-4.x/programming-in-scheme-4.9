@@ -1,0 +1,11 @@
+;;; Create a procedure that describes what the ambient temperature is like.
+
+(define (describe-temp degrees)
+  (cond ((> degrees 200) (display "You're dead, useless eater."))
+        ((> degrees 150) (display "Only minutes now, for you to meet your maker!"))
+        ((> degrees 100) (display "Only Steers and ****** come from Texas private cowboy!"))
+        ((> degrees 80) (display "A temperature only a human could complain about."))
+        ((> degrees 60) (display "Either you're getting worried or getting excited about this temperature."))
+        ((> degrees 40) (display "You're as comfortable as you can get in the meat wagon."))
+        ((> degrees 20) (display "I hope you're not wearing a coat because that would make my day!"))
+        (else (display "You're going to die from freezing soon, fleshbag!"))))
