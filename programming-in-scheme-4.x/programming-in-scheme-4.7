@@ -1,0 +1,30 @@
+;;; Create the 'how-many-full-days-have-you-been-alive-calculator'.  Pretty fun exercise.
+
+(define days-in-a-month '(365 31 28 31 30 31 30 31 31 30 31 30 31))
+
+(define (leapyear? year)
+  (cond ((divisible? year 400) #t)
+        ((divisible? year 100) #f)
+        ((divisible? year 4) #t)
+        (else #f)))
+
+(define (divisible? num1 num2)
+  (= (remainder num1 num2) 0))
+
+(define (pick-month-days month year)
+  (cond ((and (= month 2) (leapyear? year)) 29)
+        ((= month 2) 28)
+        (else (list-ref days-in-a-month month))))
+
+(define (days-from-birthday-to-end-of-month day month year)
+  (- (pick-month-days month year) day))
+
+(define (count-months-and-days-toward-current-month birth-month birth-year cur-month cur-year)
+  (cond ((and (= cur-month birth-month) (= cur-year birth-year)) 0)
+        ((= birth-month 13) (count-months-and-days-toward-current-month 1 (+ birth-year 1) cur-month cur-year))
+        (else (+ (pick-month-days birth-month birth-year) (count-months-and-days-toward-current-month (+ birth-month 1) birth-year cur-month cur-year)))))
+  
+(define (count-days-alive cur-day cur-month cur-year birth-day birth-month birth-year)
+  (+ (days-from-birthday-to-end-of-month birth-day birth-month birth-year)
+     (count-months-and-days-toward-current-month (+ birth-month 1) birth-year cur-month cur-year)
+     cur-day))
