@@ -1,0 +1,15 @@
+;;; Create a procedure that randomly bets and rolls a virtual die until you win a cute little prize.
+
+(define (roll-till-you-win)
+  (let ((bet (random 10))
+        (roll (random 10)))
+    (display "Random bet = ")
+    (display bet)
+    (newline)
+    (display "Random roll = ")
+    (display roll)
+    (newline)
+    (newline)
+    (if (= bet roll)
+        (display "YOU WIN A BLUE RIBBON FOR PARTICIPATING!")
+        (roll-till-you-win))))
