@@ -1,0 +1,15 @@
+;;; This time, the code is changed slightly so that the positive flip is 10 percent more likely to land.  It changes the outcome
+;;; drastically.  The most negative steps in a row I've seen is something like 7 steps before going positive again.
+
+(define (random-walk)
+  (random-walk-helper (random 10) 0 20))
+
+(define (random-walk-helper flip counter n-amount)
+  (cond ((= (abs counter) n-amount) (display "Phew! What a walk."))
+        ((>= flip 4) (display (+ counter 1))
+                    (newline)
+                    (random-walk-helper (random 10) (+ counter 1) n-amount))
+        ((< flip 4) (display (- counter 1))
+                    (newline)
+                    (random-walk-helper (random 10) (- counter 1) n-amount))
+        (else (display "What the what??"))))
