@@ -1,0 +1,14 @@
+;;; Create the procedure that returns an inital 50/50 chance to get a 1 or -1 added to a running total.
+
+(define (random-walk n)
+  (random-walk-helper (random 1) 0 n))
+
+(define (random-walk-helper flip counter n-amount)
+  (cond ((<= n-amount 0) (display "Phew! What a walk."))
+        ((= flip 1) (display (+ counter 1))
+                    (newline)
+                    (random-walk-helper (random 2) (+ counter 1) (- n-amount 1)))
+        ((= flip 0) (display (- counter 1))
+                    (newline)
+                    (random-walk-helper (random 2) (- counter 1) (- n-amount 1)))
+        (else (display "What the what??")))
