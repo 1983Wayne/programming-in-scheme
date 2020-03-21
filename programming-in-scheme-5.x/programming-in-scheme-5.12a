@@ -1,0 +1,14 @@
+;;; Slightly modified so that it will stop the random-walk if it walks 20 units on either side of the number line.
+
+(define (random-walk)
+  (random-walk-helper (random 1) 0 20))
+
+(define (random-walk-helper flip counter n-amount)
+  (cond ((= (abs counter) n-amount) (display "Phew! What a walk."))
+        ((= flip 1) (display (+ counter 1))
+                    (newline)
+                    (random-walk-helper (random 2) (+ counter 1) n-amount))
+        ((= flip 0) (display (- counter 1))
+                    (newline)
+                    (random-walk-helper (random 2) (- counter 1) n-amount))
+        (else (display "What the what??"))))
