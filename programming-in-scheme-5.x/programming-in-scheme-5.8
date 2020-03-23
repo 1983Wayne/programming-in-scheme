@@ -35,9 +35,9 @@
 ;;; In the book, in the bugs section, they put this procedure in and it's a million times better than the one I put:
         
 (define (prime-factors number)
-  (if (= number 1)
-      (display "The only factor of 1 is 1!")
-      (prime-factors-helper number 2)))
+  (cond ((< number 1) (display "Please enter a positive integer."))
+        ((= number 1) (display "The only factor of 1 is 1!"))
+        (else (prime-factors-helper number 2))))
 
 (define (prime-factors-helper number factor)
   (cond ((= number factor) (writeln factor))
