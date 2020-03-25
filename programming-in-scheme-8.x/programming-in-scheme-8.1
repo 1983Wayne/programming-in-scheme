@@ -1,0 +1,19 @@
+;;; Create a telephone number representation in Scheme and create the predicates 'toll-free-number?' and 'los-angeles-number?'.
+
+(define (make-telephone-number digits)
+  (cond ((= (length digits) 10) (append (area-code (list (car digits) (cadr digits) (caddr digits))) (local-number (cddddr digits))))
+        (else (error "This only can be a 10 digit number" digits))))
+
+(define (area-code digits)
+  (list (car digits) (cadr digits) (caddr digits) '-))
+
+(define (local-number digits)
+  (append (list (car digits) (cadr digits) (caddr digits) '-) (cddr digits)))
+
+(define (los-angeles-number? digits)
+  (cond ((equal? (list (car digits) (cadr digits) (caddr digits)) '(2 1 3)) #t)
+        (else #f)))
+
+(define (toll-free-number? digits)
+  (cond ((equal? (list (car digits) (cadr digits) (caddr digits)) '(8 0 0)) #t)
+        (else #f)))
