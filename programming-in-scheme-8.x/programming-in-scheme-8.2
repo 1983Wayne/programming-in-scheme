@@ -1,0 +1,16 @@
+;;; Create a procedure that returns the date of the first day of the following month.  ( Of some kind of input date. )
+
+(define (date year month day)
+  (cons (cons year month) day))
+
+(define find-month '(Place January February March April May June July August September October November December))
+
+(define (turn-month-into-number n month list-of-months)
+  (cond ((null? list-of-months) (error "This is a problem" month))
+        ((eq? month (car list-of-months)) (+ n 1))
+        (else (turn-month-into-number (+ n 1) month (cdr list-of-months)))))
+        
+(define (start-of-next-month year month day)
+  (if (eq? month 'December)
+      (date (+ year 1) 'January 1)
+      (date year (list-ref find-month (turn-month-into-number 0 month find-month)) 1)))
