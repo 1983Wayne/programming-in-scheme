@@ -1,0 +1,22 @@
+;;; Create some cool graphing stuff.
+
+(define (endpt1 x-cor y-cor)
+  (cons x-cor y-cor))
+
+(define (endpt2 x-cor y-cor)
+  (cons x-cor y-cor))
+
+(define (make-line-segment endpt1 endpt2)
+  (cons endpt1 endpt2))
+
+(define (vertical-segment? endpt1 endpt2)
+  (if (and (= (car endpt1) (car endpt2))
+           (not (= (cdr endpt1) (cdr endpt2))))
+      #t
+      #f))
+
+;;; Just guessing on this last part, actually, so don't take it too seriously.  It seems to work properly for pi, pi/2, and pi/4 so
+;;; maybe it's okay???
+
+(define (unit-vector-one angle)
+  (make-line-segment (endpt1 0 0) (endpt2 (cos angle) (sin angle))))
