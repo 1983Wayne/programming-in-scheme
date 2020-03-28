@@ -1,0 +1,9 @@
+;;; Create the word from list filtering procedure.
+
+(define (filter-out-symbol lst symbol)
+  (new-list-create lst symbol '()))
+
+(define (new-list-create lst symbol new-list-made)
+  (cond ((null? lst) (reverse new-list-made))
+        ((eq? (car lst) symbol) (new-list-create (cdr lst) symbol new-list-made))
+        (else (new-list-create (cdr lst) symbol (cons (car lst) new-list-made)))))
