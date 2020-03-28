@@ -1,0 +1,6 @@
+;;; Create the answerer bot found in the book.
+
+(define (answer-me question)
+  (cond ((null? question) 'no)
+        ((eq? (car question) 'you) 'yes)
+        (else (answer-me (cdr question)))))
