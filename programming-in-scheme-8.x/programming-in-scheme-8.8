@@ -1,0 +1,9 @@
+;;; Create a procedure to average a number.
+
+(define (average lst)
+  (average-helper (length lst) lst 0))
+
+(define (average-helper n lst total)
+  (cond ((= 0 n) (error "There must be greater than 0 items in the list"))
+        ((null? lst) (/ total n))
+        (else (average-helper n (cdr lst) (+ total (car lst))))))
