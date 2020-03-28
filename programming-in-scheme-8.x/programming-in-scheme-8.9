@@ -1,0 +1,26 @@
+;;; Create a limited and very basic golf-score procedure.
+
+(define (golf-score list-scores list-pars)
+  (display "Your scores are :")
+  (display (golf-score-helper list-scores list-pars))
+  (newline)
+  (display "Any eagles, birdies, bogeys or double bogeys are :")
+  (newline)
+  (determine-score-names (golf-score-helper list-scores list-pars)))
+
+(define (golf-score-helper list-scores list-pars)
+  (if (= (length list-scores) (length list-pars))
+      (cond ((null? list-scores) '())
+            (else (append (list (- (car list-scores) (car list-pars))) (golf-score-helper (cdr list-scores) (cdr list-pars)))))
+      (error "Cannot have two different list lengths")))
+
+(define (determine-score-names score-list)
+  (score-helper score-list '()))
+
+(define (score-helper score-list new-list)
+  (cond ((null? score-list) (reverse new-list))
+        ((= -1 (car score-list)) (score-helper (cdr score-list) (append '(birdie) new-list)))
+        ((= -2 (car score-list)) (score-helper (cdr score-list) (append '(eagle) new-list)))
+        ((= 1 (car score-list)) (score-helper (cdr score-list) (append '(bogey) new-list)))
+        ((= 2 (car score-list)) (score-helper (cdr score-list) (append '(double-bogey) new-list)))
+        (else (score-helper (cdr score-list) (append (list (car score-list)) new-list)))))
