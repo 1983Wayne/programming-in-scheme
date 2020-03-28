@@ -1,0 +1,33 @@
+;;; Create the menu, menu-checker, price-checker, and total price procedures.
+
+(define menu
+  '((egg-drop-soup 1.75)
+    (won-ton-soup 2.00)
+    (beef-with-snow-peas 7.00)
+    (chicken-with-almonds 6.75)
+    (shrimp-lo-mein 6.50)
+    (mixed-vegetables 5.00)))
+
+(define (on-the-menu? item)
+  (menu-checker item 0))
+
+(define (menu-checker item n)
+  (cond ((= n (length menu)) #f)
+        ((eq? item (car (list-ref menu n))) #t)
+        (else (menu-checker item (+ n 1)))))
+
+(define (price-of item)
+  (if (on-the-menu? item)
+      (price-checker item 0)
+      0))
+
+(define (price-checker item n)
+  (if (eq? item (car (list-ref menu n)))
+      (cdr (list-ref menu n))
+      (price-checker item (+ n 1))))
+
+         
+(define (price-of-meal item-list)
+  (cond ((null? item-list) 0)
+        ((on-the-menu? (car item-list)) (+ (car (price-of (car item-list))) (price-of-meal (cdr item-list))))
+        (else (price-of-meal (cdr item-list)))))
