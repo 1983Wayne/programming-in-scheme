@@ -1,0 +1,6 @@
+;;; Make a procedure that calculates the product of the numbers in a list.
+
+(define (product lst)
+  (cond ((null? lst) 1)
+        ((equal? (car lst) 0) 0)
+        (else (* (car lst) (product (cdr lst))))))
