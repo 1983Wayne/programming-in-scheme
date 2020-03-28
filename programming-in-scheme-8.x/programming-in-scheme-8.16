@@ -1,0 +1,11 @@
+;;; Create a procedure that 'randomly' shuffles some letters in a list of letters.
+
+(define (shuffle list-of-letters)
+  (shuffling-letters list-of-letters (length list-of-letters) (random 3)))
+
+(define (shuffling-letters lst n k)
+  (cond ((= n 0) lst)
+        ((= k 0) (shuffling-letters (reverse lst) (- n 1) (random 3)))
+        ((= k 1) (shuffling-letters (cons (car lst) (reverse (cdr lst))) (- n 1) (random 3)))
+        ((= k 2) (shuffling-letters (cons (car (reverse lst)) (cdr (reverse lst))) (- n 1) (random 3)))
+        (else (display "GO TO HEAVEN, HEATHEN."))))
