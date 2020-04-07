@@ -1,0 +1,21 @@
+;;; Create a procedure that will deal you unique cards from a single deck of cards of any amount.
+
+(define suits '(hearts spades diamonds clubs))
+
+(define nums '(1 2 3 4 5 6 7 8 9 10 jack queen king))
+
+(define (deal-cards number)
+    (define (in-card-list? element lst)
+      (cond ((null? lst) #f)
+            ((equal? (car lst) element) #t)
+            (else (in-card-list? element (cdr lst)))))
+    (define (deal-hand num hand card-holder) 
+      (cond ((= num 0) hand)
+            ((> num 52) (error "Too large of a value to deal from ONE DECK!"))
+            ((not (in-card-list? card-holder hand)) 
+            (deal-hand (- num 1) (cons card-holder hand) (cons (list-ref suits (random (length suits)))
+                                                               (list (list-ref nums (random (length nums)))))))
+            (else (deal-hand num hand (cons (list-ref suits (random (length suits)))
+                                            (list (list-ref nums (random (length nums)))))))))
+    (deal-hand number '() (cons (list-ref suits (random (length suits)))
+                                (list (list-ref nums (random (length nums)))))))
